@@ -1,5 +1,5 @@
 <?php
-
+use App\Producto;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,4 +56,25 @@ Route::get('arreglosm', function(){
 
 } );
 
+Route::get('prueba', function(){
+    $p = new Producto();
+    $p->nombre="";
+    $p->valorUnitario=56;
+    $p->save();
 
+});
+
+Route::get('nuevoproducto', function(){
+    return view("productos.create");
+});
+
+Route::post('guardarproducto', function(){
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
+    $p = new Producto();
+    $p->nombre=$_POST["nomProducto"];
+    $p->valorUnitario=$_POST["valorUnitario"];
+    $p->save();
+
+});
